@@ -8,24 +8,48 @@ models:
           - unique
           - not_null
 
+        data_type: INT64
+      - name: first_name
+        description: ''
+        data_type: STRING
+      - name: last_name
+        description: ''
+        data_type: STRING
   - name: stg_orders
     columns:
       - name: order_id
         tests:
           - unique
           - not_null
+        data_type: INT64
+      - name: customer_id
+        description: ''
+        data_type: INT64
+      - name: order_date
+        description: ''
+        data_type: DATE
       - name: status
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
+        data_type: STRING
   - name: stg_payments
     columns:
       - name: payment_id
         tests:
           - unique
           - not_null
+        description: 課金ID
+        data_type: INT64
+      - name: order_id
+        description: ''
+        data_type: INT64
       - name: payment_method
         tests:
           - accepted_values:
               values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+        data_type: STRING
+      - name: amount
+        description: ''
+        data_type: FLOAT64
